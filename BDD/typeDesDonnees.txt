@@ -1,0 +1,29 @@
+Données bdd
+
+
+
+
+
+Attraction :
+
+Nom_attraction Varchar (clé primaire)
+Nb_place_par_tour INT
+Emplacement Varchar // x,y
+TailleFileAttenteNormal INT //File d'attente basique
+TailleFileAttenteFast INT //File d'attente FastPass
+TailleFileAttenteTotal INT //
+Disponible boolean // Si l'attraction est ouverte
+Horaire_Deb Date (Clé é) // Horaire d'ouverture de l'attraction
+Horaire_Fin Date (Clé é) // Horaire de fermeture de l'attraction
+TempsAttenteActuel date // Temps d'attente réel de l'attraction
+
+Popularite :
+
+Nom_attraction Varchar (Clé p et é)
+Horaire date (Clé p et é)
+NbPersonneMoy INT // Nb de personne moyen à une attraction et un horaire donné
+TempsAttenteMoy date // Temps d'attente moyen à une attraction et un horaire donné
+Popularité Varchar // Indice de popularité (Peu populaire ou très populaire par exemple)
+
+Horaires :
+Heures date //Toutes les horaires entre l'ouverture et la fermeture du parc avec 15 minutes d'intervalles
