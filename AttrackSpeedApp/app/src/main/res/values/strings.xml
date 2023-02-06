@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="title_home">Accueil</string>
+    <string name="title_liste">Liste</string>
+    <string name="title_dashboard">carte</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_connexion">Connexion</string>
+    <string name="mot_de_passe">Mot de passe</string>
+    <string name="identifiant">Identifiant</string>
+    <string name="compte">Compte</string>
+    <string name="connexion">Connexion</string>
+    <string name="creer_un_compte">Creer un compte</string>
+    <string name="liste_des_attractions">Liste des attractions</string>
+    <string name="ma_liste">Ma liste</string>
+</resources>
