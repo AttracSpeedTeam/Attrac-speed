@@ -12,9 +12,9 @@ public class ServiceAdmin implements ServiceServeur{
     public boolean modifDB(Attraction attraction) throws RemoteException {
         try {
             if(checkPresence(attraction.getNom())){
-            Connection connection = DriverManager.getConnection("jdbc:mysql:///attracspeed","root","");
+                Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/attracspeed","root","");
 
-            String query =  "update attraction" +
+                String query =  "update attraction" +
                             " set nom_attraction = ? ," +
                             " Nb_place_par_tour = ? ," +
                            // " Emplacement = ?" +
@@ -38,7 +38,7 @@ public class ServiceAdmin implements ServiceServeur{
             connection.close();
                 return true;
             } else {return false;}
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 
@@ -49,7 +49,7 @@ public class ServiceAdmin implements ServiceServeur{
     public String getListeAttrac() throws RemoteException {
         String res = "";
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql:///attracspeed","root","");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/attracspeed","root","");
             Statement st = connection.createStatement();
             String query = "Select * from Attraction";
             ResultSet rs = st.executeQuery(query);
@@ -64,8 +64,8 @@ public class ServiceAdmin implements ServiceServeur{
 
     }
 
-    public boolean checkPresence(String name) throws SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:mysql:///attracspeed","root","");
+    public boolean checkPresence(String name) throws SQLException, ClassNotFoundException {
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/attracspeed","root","");
         String query =" Select count(*) from Attraction where nom_attraction = ?";
         PreparedStatement ps = connection.prepareStatement(query);
         ps.setString(1,name);

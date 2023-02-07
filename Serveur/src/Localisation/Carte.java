@@ -23,7 +23,7 @@ public class Carte {
 		this.attractions.remove(n);
 	}
 	
-	public void modifierAttraction(String n, Position p) {
+	public void modifierAttraction(Attraction n, Position p) {
 		this.attractions.replace(n,p);
 	}
 }
