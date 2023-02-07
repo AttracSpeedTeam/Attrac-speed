@@ -11,4 +11,6 @@ public interface Utilisateur {
 	public void connaitrePosition();
 	
 	public void afficherListe();
+
+	public void afficherListeAttraction();
 }

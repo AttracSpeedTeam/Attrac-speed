@@ -11,6 +11,7 @@ public class ServiceAdmin implements ServiceServeur{
     @Override
     public double modifDB(Attraction attraction) throws RemoteException {
         try {
+            if(checkPresence(attraction.getNom())){
             Connection connection = DriverManager.getConnection("jdbc:mysql:///attracspeed","root","");
 
             String query =  "update attraction" +
@@ -35,10 +36,12 @@ public class ServiceAdmin implements ServiceServeur{
             ps.executeUpdate();
 
             connection.close();
+                return 0;
+            } else return 1;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return 0;
+
     }
 
 
@@ -51,7 +54,7 @@ public class ServiceAdmin implements ServiceServeur{
             String query = "Select * from Attraction";
             ResultSet rs = st.executeQuery(query);
             while(rs.next()){
-                res += rs.getString(1);
+                res += rs.getString(1) + ", ";
             }
             connection.close();
         } catch (SQLException e) {
@@ -59,6 +62,20 @@ public class ServiceAdmin implements ServiceServeur{
         }
         return res;
 
+    }
+
+    public boolean checkPresence(String name) throws SQLException {
+        Connection connection = DriverManager.getConnection("jdbc:mysql:///attracspeed","root","");
+        String query =" Select count(*) from Attraction where nom_attraction = ?";
+        PreparedStatement ps = connection.prepareStatement(query);
+        ps.setString(1,name);
+        ResultSet rs = ps.executeQuery();
+        rs.next();
+        if(rs.getInt(1) > 0){
+            return true;
+        } else {
+            return false;
+        }
     }
 
 
