@@ -14,7 +14,7 @@ public class ServiceAdmin implements ServiceServeur{
             Connection connection = DriverManager.getConnection("jdbc:mysql:///attracspeed","root","");
 
             String query =  "update attraction" +
-                            "set nom_attraction = ? ," +
+                            " set nom_attraction = ? ," +
                             " Nb_place_par_tour = ? ," +
                            // " Emplacement = ?" +
                            // " TailleFileAttenteNormal = ?" +
