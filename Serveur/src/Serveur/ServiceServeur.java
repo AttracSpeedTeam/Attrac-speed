@@ -10,3 +10,4 @@ public interface ServiceServeur extends Remote {
 
     String getListeAttrac() throws RemoteException;
 }
+ 

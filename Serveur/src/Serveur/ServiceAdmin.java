@@ -41,6 +41,7 @@ public class ServiceAdmin implements ServiceServeur{
         return 0;
     }
 
+
     @Override
     public String getListeAttrac() throws RemoteException {
         String res = "";
