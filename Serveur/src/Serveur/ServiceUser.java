@@ -7,8 +7,8 @@ import java.sql.*;
 
 public class ServiceUser implements ServiceServeur{
     @Override
-    public double modifDB(Attraction attraction) throws RemoteException {
-        return 0;
+    public boolean modifDB(Attraction attraction) throws RemoteException {
+        return false;
     }
 
     @Override

@@ -9,7 +9,7 @@ public class ServiceAdmin implements ServiceServeur{
 
 
     @Override
-    public double modifDB(Attraction attraction) throws RemoteException {
+    public boolean modifDB(Attraction attraction) throws RemoteException {
         try {
             if(checkPresence(attraction.getNom())){
             Connection connection = DriverManager.getConnection("jdbc:mysql:///attracspeed","root","");
@@ -36,8 +36,8 @@ public class ServiceAdmin implements ServiceServeur{
             ps.executeUpdate();
 
             connection.close();
-                return 0;
-            } else return 1;
+                return true;
+            } else {return false;}
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

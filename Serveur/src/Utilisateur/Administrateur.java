@@ -19,7 +19,7 @@ public class Administrateur implements Utilisateur{
 		try {
 			Registry reg = LocateRegistry.getRegistry(ip, port);
 			ServiceServeur sa = (ServiceServeur) reg.lookup("ServiceAdmin");
-			if(sa.modifDB(attraction) == 0){
+			if(sa.modifDB(attraction)){
 				System.out.println("Modif réussi ");
 			} else{
 				System.out.println("Modif raté");

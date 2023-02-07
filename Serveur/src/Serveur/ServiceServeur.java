@@ -6,7 +6,7 @@ import Attraction.Attraction;
 
 public interface ServiceServeur extends Remote {
 
-    double modifDB(Attraction attraction) throws RemoteException;
+    boolean modifDB(Attraction attraction) throws RemoteException;
 
     String getListeAttrac() throws RemoteException;
 }
