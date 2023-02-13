@@ -1,9 +1,14 @@
 package Attraction;
 
-public class Attraction {
+import java.io.Serializable;
+
+public class Attraction implements Serializable {
 	private String nom;
 	private int tempsAttente;
 	private int nbPlaces;
+
+
+
 	private int longueurFile;
 	
 	public Attraction(String n, int p) {
@@ -12,10 +17,35 @@ public class Attraction {
 		this.longueurFile = 0;
 		this.tempsAttente = 0;
 	}
-	
+
+	public void setTempsAttente(int tempsAttente) {
+		this.tempsAttente = tempsAttente;
+	}
+
+	public void setLongueurFile(int longueurFile) {
+		this.longueurFile = longueurFile;
+	}
+
 	public void calculerTempsAttente() {}
 	
 	public void majLongueurFile(int l) {
 		this.longueurFile = l;
 	}
+
+	public String getNom() {
+		return this.nom;
+	}
+
+	public int getTempsAttente() {
+		return tempsAttente;
+	}
+
+	public int getNbPlaces() {
+		return nbPlaces;
+	}
+
+	public int getLongueurFile() {
+		return longueurFile;
+	}
+
 }

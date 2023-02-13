@@ -3,25 +3,27 @@ package Localisation;
 import java.util.HashMap;
 import java.util.Map;
 
+import Attraction.Attraction;
+
 public class Carte {
 	
-	public Map<String,Position> attractions;
+	public Map<Attraction,Position> attractions;
 	
 	public Carte() {
-		this.attractions = new HashMap<String,Position>();
+		this.attractions = new HashMap<Attraction,Position>();
 	}
 	
-	public void calculerDistance(String a1, String a2) {}
+	public void calculerDistance(Attraction a1, Attraction a2) {}
 	
-	public void ajouterAttraction(String n, Position p) {
+	public void ajouterAttraction(Attraction n, Position p) {
 		this.attractions.put(n, p);
 	}
 	
-	public void supprimerAttracion(String n) {
+	public void supprimerAttracion(Attraction n) {
 		this.attractions.remove(n);
 	}
 	
-	public void modifierAttraction(String n, Position p) {
+	public void modifierAttraction(Attraction n, Position p) {
 		this.attractions.replace(n,p);
 	}
 }
