@@ -9,9 +9,17 @@ import java.rmi.registry.Registry;
 
 import Serveur.ServiceServeur;
 
-public class Administrateur implements Utilisateur{
-	private String ip = "localhost";
-	private int port = 1099;
+public class Administrateur extends Utilisateur {
+
+	public Administrateur() {
+		this.ip = "localhost";
+		this.port = 1099;
+	}
+
+	public Administrateur(String ip, int port) {
+		this.ip=ip;
+		this.port=port;
+	}
 
 
 	public void modifierAttraction(Attraction attraction){
@@ -30,26 +38,6 @@ public class Administrateur implements Utilisateur{
 			System.out.println("Erreur pour acceder à l'élément dans le répertoire");
 		}
 
-	}
-	
-	public void creerListe() {
-		// TODO Auto-generated method stub		
-	}
-
-	public void modifierListe() {
-		// TODO Auto-generated method stub	
-	}
-
-	public void supprimerListe() {
-		// TODO Auto-generated method stub	
-	}
-
-	public void connaitrePosition() {
-		// TODO Auto-generated method stub	
-	}
-
-	public void afficherListe() {
-		// TODO Auto-generated method stub
 	}
 
 	@Override

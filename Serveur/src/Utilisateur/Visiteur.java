@@ -7,27 +7,16 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-public class Visiteur implements Utilisateur{
-	private String ip = "localhost";
-	private int port = 1099;
-	public void creerListe() {
-		// TODO Auto-generated method stub	
+public class Visiteur extends Utilisateur {
+
+	public Visiteur() {
+		this.ip = "localhost";
+		this.port = 1099;
 	}
 
-	public void modifierListe() {
-		// TODO Auto-generated method stub		
-	}
-
-	public void supprimerListe() {
-		// TODO Auto-generated method stub		
-	}
-
-	public void connaitrePosition() {
-		// TODO Auto-generated method stub		
-	}
-
-	public void afficherListe() {
-		// TODO Auto-generated method stub		
+	public Visiteur(String ip, int port) {
+		this.ip=ip;
+		this.port=port;
 	}
 
 	@Override
