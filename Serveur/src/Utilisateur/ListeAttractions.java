@@ -46,4 +46,15 @@ public class ListeAttractions {
     public void setlAttractions(List<Attraction> lAttractions) {
         this.lAttractions = lAttractions;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder res= new StringBuilder();
+
+
+
+        return nom+": {" +
+                "\n Attractions=\n " + lAttractions.toString() +
+                "\n}\n";
+    }
 }

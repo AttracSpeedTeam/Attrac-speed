@@ -6,17 +6,20 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.ArrayList;
 
 public class Visiteur extends Utilisateur {
 
 	public Visiteur() {
 		this.ip = "localhost";
 		this.port = 1099;
+		this.mesListesDeAttractions=new ArrayList<>();
 	}
 
 	public Visiteur(String ip, int port) {
 		this.ip=ip;
 		this.port=port;
+		this.mesListesDeAttractions=new ArrayList<>();
 	}
 
 	@Override

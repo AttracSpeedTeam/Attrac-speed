@@ -48,4 +48,12 @@ public class Attraction implements Serializable {
 		return longueurFile;
 	}
 
+	@Override
+	public String toString() {
+		return nom+": {"+
+				"\n tempsAttente=" + tempsAttente +
+				"\n nbPlaces=" + nbPlaces +
+				"\n longueurFile=" + longueurFile +
+				"\n}";
+	}
 }
