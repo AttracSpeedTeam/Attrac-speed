@@ -28,3 +28,5 @@ hs_err_pid*
 Serveur/Serveur.iml
 *.iml
 .iml
+*.gradle
+.gradle
