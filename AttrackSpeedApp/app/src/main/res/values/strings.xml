@@ -12,8 +12,10 @@
     <string name="creer_un_compte">Creer un compte</string>
     <string name="liste_des_attractions">Liste des attractions</string>
     <string name="ma_liste">Ma liste</string>
-
-    <!-- Home fragment -->
-    <string name="alexandre">Alexandre is gay</string>
-
+    <string name="presentation">Presentation</string>
+    <string name="bienvenue">Bienvenue</string>
+    <string name="info">Plus d\'information</string>
+    <string name="description">Attrac-Speed est une application qui vas améliorer votre aventure dans les parcs d\'attractions. celle ci vous permettra de gagner un du temps en planifiant votre journée en fonction de l\'affluence des visiteurs et ainsi eviter les files d\'attentes.</string>
+    <string name="titleparc">Choisir un parc</string>
+    <string name="utilisateur">Utilisateur</string>
 </resources>
