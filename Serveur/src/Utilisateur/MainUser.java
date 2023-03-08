@@ -13,6 +13,9 @@ public class MainUser {
 
         Visiteur v = new Visiteur();
         v.afficherListeAttraction();
+        
+        
+
 
     }
 

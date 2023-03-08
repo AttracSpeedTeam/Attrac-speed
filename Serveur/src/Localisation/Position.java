@@ -8,12 +8,4 @@ public class Position {
 		this.posX = x;
 		this.posY = y;
 	}
-
-	public int getPosX() {
-		return posX;
-	}
-
-	public int getPosY() {
-		return posY;
-	}
 }
