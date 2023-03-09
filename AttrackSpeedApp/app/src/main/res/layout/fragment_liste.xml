@@ -1,26 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.liste.ListFragment">
+    tools:context=".ui.liste.ListFragment"
+    android:background="@drawable/background2">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:id="@+id/liste"
+        android:layout_height="wrap_content"
+        android:text="@string/listeattract"
+        android:textSize="35sp"
+        android:layout_marginTop="60dp"
+        android:textColor="@color/white"/>
 
     <android.support.design.widget.TabLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp">
+        android:layout_below="@+id/liste"
+        android:layout_gravity=""
+        android:layout_marginTop="30dp"
+        app:tabTextColor="@color/white">
 
         <android.support.design.widget.TabItem
-            android:text="Attraction"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="@string/attraction" />
 
         <android.support.design.widget.TabItem
-            android:text="Ma liste"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="@string/maliste" />
 
     </android.support.design.widget.TabLayout>
 
-</LinearLayout>
+</RelativeLayout>
