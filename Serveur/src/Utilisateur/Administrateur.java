@@ -11,21 +11,38 @@ import java.util.ArrayList;
 import Serveur.ServiceServeurAdmin;
 import Serveur.ServiceServeurVisiteur;
 
+/**
+ * classe représentant un Utilisateur de type Administrateur
+ */
 public class Administrateur extends Utilisateur {
 
+	/**
+	 * constructeur par defaut avec ces parametres:
+	 * IP=localhost
+	 * PORT=1099
+	 */
 	public Administrateur() {
 		this.ip = "localhost";
 		this.port = 1099;
 		this.mesListesDeAttractions=new ArrayList<>();
 	}
 
+	/**
+	 * constructeur passant l'ip et le port en parametres
+	 * @param ip IP
+	 * @param port PORT
+	 */
 	public Administrateur(String ip, int port) {
 		this.ip=ip;
 		this.port=port;
 		this.mesListesDeAttractions=new ArrayList<>();
 	}
 
-
+	/**
+	 * methode permettant la modification dans la base de données d'une attraction
+	 * @param attraction attraction modifiée avec comme nom celle à modifier
+	 * @return true si la modification a été éxécutée avec succès
+	 */
 	public boolean modifierAttraction(Attraction attraction){
 
 		try {
@@ -45,6 +62,9 @@ public class Administrateur extends Utilisateur {
 		return false;
 	}
 
+	/**
+	 * affiche en ligne de commande les attractions de la BDD
+	 */
 	@Override
 	public void afficherListeAttraction() {
 		try {
@@ -58,6 +78,11 @@ public class Administrateur extends Utilisateur {
 		}
 	}
 
+	/**
+	 * methode permettant l'insertion dans la base de données d'une attraction
+	 * @param attraction attraction à insérer
+	 * @return true si l'insertion a été éxécutée avec succès
+	 */
 	public boolean ajouterAttractionBDD(Attraction attraction){
 		try {
 		Registry reg = LocateRegistry.getRegistry(ip, port);
@@ -73,6 +98,11 @@ public class Administrateur extends Utilisateur {
 	return false;
 	}
 
+	/**
+	 * methode permettant la suppression dans la base de données d'une attraction
+	 * @param name nom de l'attraction à supprimer
+	 * @return true si la suppression a été éxécutée avec succès
+	 */
 	public boolean retirerAttraction(String name){
 
 		try {
