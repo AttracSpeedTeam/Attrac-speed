@@ -5,9 +5,17 @@ import Attraction.Attraction;
 import java.rmi.RemoteException;
 import java.sql.*;
 
+/**
+ * classe de service de connection à la BDD d'un utilisateur
+ */
 public class ServiceAdminVisiteur implements ServiceServeurAdmin, ServiceServeurVisiteur {
 
-
+    /**
+     * modification d'une attraction dans la BDD
+     * @param attraction attraction modifiée (nom identique pour la reconnaitre)
+     * @return true si réussi
+     * @throws RemoteException
+     */
     @Override
     public boolean modifDB(Attraction attraction) throws RemoteException {
         try {
@@ -44,6 +52,12 @@ public class ServiceAdminVisiteur implements ServiceServeurAdmin, ServiceServeur
 
     }
 
+    /**
+     * suppression d'une attraction dans la BDD
+     * @param name nom de l'attraction à supprimer
+     * @return true si réussi
+     * @throws RemoteException
+     */
     @Override
     public boolean retirerAttractionBDD(String name) throws RemoteException {
         try{
@@ -63,6 +77,12 @@ public class ServiceAdminVisiteur implements ServiceServeurAdmin, ServiceServeur
         return false;
     }
 
+    /**
+     * ajout d'une attraction dans la BDD
+     * @param attraction attraction à insérer
+     * @return true si réussi
+     * @throws RemoteException
+     */
     @Override
     public boolean ajoutAttractionBDD(Attraction attraction) throws RemoteException {
         try{
@@ -84,7 +104,11 @@ public class ServiceAdminVisiteur implements ServiceServeurAdmin, ServiceServeur
         return false;
     }
 
-
+    /**
+     * retourne la liste des attractions sous forme de chaine de caractères
+     * @return liste d'attractions String
+     * @throws RemoteException
+     */
     @Override
     public String getListeAttrac() throws RemoteException {
         String res = "";
@@ -104,6 +128,13 @@ public class ServiceAdminVisiteur implements ServiceServeurAdmin, ServiceServeur
 
     }
 
+    /**
+     * permet de verifier l'existence d'une attraction dans la BDD
+     * @param name nom de l'attraction à verifier
+     * @return true si l'attraction existe
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public boolean checkPresence(String name) throws SQLException, ClassNotFoundException {
         Connection connection = this.connectBDD();
         String query =" Select count(*) from Attraction where nom_attraction = ?";
@@ -120,6 +151,11 @@ public class ServiceAdminVisiteur implements ServiceServeurAdmin, ServiceServeur
         }
     }
 
+    /**
+     * permet de récupérer la connexion à la BDD
+     * @return connection à la BDD
+     * @throws SQLException
+     */
     private Connection connectBDD() throws SQLException {
         //RETIRER LE MDP DE LA LIGNE DE CMD    Admin1234!
        return DriverManager.getConnection("jdbc:mysql://localhost:3306/attracspeed?serverTimezone=UTC","root","Admin1234!");
