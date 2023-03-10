@@ -4,17 +4,23 @@ import Attraction.Attraction;
 
 import java.util.List;
 
+/**
+ * classe abstraite représentant un Utilisateur
+ */
 public abstract class Utilisateur {
 
+	/**Adresse IP*/
 	String ip = "localhost";
+	/**PORT*/
 	int port = 1099;
+	/**liste des listes d'attractions*/
 	List<ListeAttractions> mesListesDeAttractions;
 
 	public abstract void afficherListeAttraction();
 
 	/**
 	 * ajoute une liste d'attractions à l'utilisateur
-	 * @param nomListe
+	 * @param nomListe nom de la liste
 	 */
 	public void creerListe(String nomListe){
 		mesListesDeAttractions.add(new ListeAttractions(nomListe));
@@ -71,8 +77,8 @@ public abstract class Utilisateur {
 
 	/**
 	 * return null si liste non trouvée
-	 * @param nomListe
-	 * @return
+	 * @param nomListe nom de la liste
+	 * @return liste d'attraction ou NULL sinon
 	 */
 	public ListeAttractions getListeParNom(String nomListe){
 		ListeAttractions res=null;
@@ -85,8 +91,8 @@ public abstract class Utilisateur {
 
 	/**
 	 * return -1 si listeAttraction non trouvée dans la liste
-	 * @param a
-	 * @return
+	 * @param a Liste d'attractions
+	 * @return index int dans la liste, -1 sinon
 	 */
 	public int indexOfAttraction(ListeAttractions a){
 		int res;
