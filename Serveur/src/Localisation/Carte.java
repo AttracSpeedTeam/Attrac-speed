@@ -33,4 +33,6 @@ public class Carte {
 	public void modifierAttraction(Attraction n, Position p) {
 		this.attractions.replace(n,p);
 	}
+
+	public Position getPosition(Attraction a){ return this.attractions.get(a); }
 }

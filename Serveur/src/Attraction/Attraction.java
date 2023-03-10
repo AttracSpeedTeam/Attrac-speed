@@ -21,7 +21,12 @@ public class Attraction implements Serializable {
 	}
 
 	public void calculerTempsAttente() {
-		int temps = (int) Math.ceil(this.nbPlaces * tempsEntreChaqueAttrac / nbPlaces); 
+		int longueur = this.longueurFile;
+		int temps = -this.tempsEntreChaqueAttrac;
+		while(longueur>0) {
+			temps += tempsEntreChaqueAttrac;
+			longueur -= nbPlaces;
+		}
 		this.tempsAttente = temps;
 	}
 	

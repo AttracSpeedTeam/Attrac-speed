@@ -1,7 +1,8 @@
+package Tests;
+
 import Attraction.Attraction;
 import Utilisateur.ListeAttractions;
 import org.junit.Test;
-import org.junit.*;
 
 /**
  * class de test des fonctionnalités utilisateur
@@ -50,7 +51,7 @@ class UtilisateurTest {
     void ajoutAttractionCorrect() {
 
         //init données
-        Attraction attraction=new Attraction("NomAttraction",20);
+        Attraction attraction=new Attraction("NomAttraction",20,30);
         ListeAttractions listeAttractions=new ListeAttractions();
 
         //utilisation methode

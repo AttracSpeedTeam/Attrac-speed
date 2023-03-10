@@ -8,11 +8,11 @@ public class TestMainUser {
 
         Visiteur v=new Visiteur();
         v.creerListe("Liste1");
-        v.ajouterAttractionListe("Liste1", new Attraction("Train super rapide", 10));
-        v.ajouterAttractionListe("Liste1", new Attraction("Roller Cost Hour", 15));
+        v.ajouterAttractionListe("Liste1", new Attraction("Train super rapide", 10,0));
+        v.ajouterAttractionListe("Liste1", new Attraction("Roller Cost Hour", 15,9));
 
         v.creerListe("Liste2");
-        v.ajouterAttractionListe("Liste2", new Attraction("Le grand roux", 15));
+        v.ajouterAttractionListe("Liste2", new Attraction("Le grand roux", 15,9));
 
         System.out.println(v.afficherListe());
 
