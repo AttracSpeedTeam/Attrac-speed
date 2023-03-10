@@ -43,6 +43,6 @@ public class ServiceUserVisiteur implements ServiceServeurVisiteur {
      */
     private Connection connectBDD() throws SQLException {
         //RETIRER LE MDP DE LA LIGNE DE CMD    Admin1234!
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/attracspeed?serverTimezone=UTC","root","Admin1234!");
+        return DriverManager.getConnection("jdbc:mysql://localhost:3306/attracspeed?serverTimezone=UTC","root","");
     }
 }
