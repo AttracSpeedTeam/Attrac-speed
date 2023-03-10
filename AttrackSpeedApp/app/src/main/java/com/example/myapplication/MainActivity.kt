@@ -1,14 +1,19 @@
 package com.example.myapplication
 
+import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
+import android.view.View
+import android.view.ViewGroup
 import android.view.Window
+import android.widget.*
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.myapplication.databinding.ActivityMainBinding
+import com.example.myapplication.App
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,6 +24,10 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
 
+        /**Instanciation d'une classe java en Kotlin*/
+        val Connexion = App()
+        Connexion.ConnexionToBase()
+        /***/
 
         setContentView(binding.root)
         supportActionBar?.hide()
@@ -26,14 +35,15 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.Page_Accueil, R.id.Page_Carte, R.id.Page_Information, R.id.Page_Connexion, R.id.Page_Liste
+                R.id.Page_Accueil, R.id.Page_Carte, R.id.Page_Connexion, R.id.Page_Liste
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+
     }
 }

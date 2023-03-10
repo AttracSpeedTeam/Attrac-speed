@@ -12,14 +12,12 @@ public class Carte {
 	public Carte() {
 		this.attractions = new HashMap<Attraction,Position>();
 	}
-	
 	public int calculerDistance(Attraction a1, Attraction a2) {
-		Position pos1 = this.attractions.get(a1);
-		Position pos2 = this.attractions.get(a2);
-		int x = Math.abs(pos1.getPosX() - pos2.getPosX());
-		int y = Math.abs(pos1.getPosY() - pos2.getPosY());
-		int distance = (int) Math.ceil(Math.sqrt(x*x + y*y));
-		return distance;
+		Position p1 = this.attractions.get(a1);
+		Position p2 = this.attractions.get(a2);
+		int x = Math.abs(p1.getPosX()-p2.getPosX());
+		int y = Math.abs(p1.getPosY()-p2.getPosY());
+		return (int) Math.round(Math.sqrt((x*x)+(y*y)));
 	}
 	
 	public void ajouterAttraction(Attraction n, Position p) {

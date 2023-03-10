@@ -1,6 +1,10 @@
+package com.example.myapplication;
+
+import com.example.myapplication.ClientInt;
+
 import java.io.IOException;
 
-public class Client implements ClientInt{
+public class Client implements ClientInt {
 
 	public void CreateList() throws IOException {
 		// TODO Auto-generated method stub

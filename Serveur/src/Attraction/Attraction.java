@@ -4,12 +4,9 @@ import java.io.Serializable;
 
 public class Attraction implements Serializable {
 	private String nom;
-	//temps en secondes
 	private int tempsAttente;
-	private int tempsEntreChaqueAttrac;
 	private int nbPlaces;
-
-
+	private int tempsEntreChaqueAttrac;
 	private int longueurFile;
 	
 	public Attraction(String n, int p, int t) {
@@ -23,15 +20,15 @@ public class Attraction implements Serializable {
 	public void calculerTempsAttente() {
 		int longueur = this.longueurFile;
 		int temps = -this.tempsEntreChaqueAttrac;
-		while(longueur>0) {
+		while (longueur > 0) {
 			temps += tempsEntreChaqueAttrac;
 			longueur -= nbPlaces;
 		}
 		this.tempsAttente = temps;
 	}
-	
-	public void majLongueurFile(int l) {
-		this.longueurFile = l;
+
+	public void majLongueurFile(int longueurFile) {
+		this.longueurFile = longueurFile;
 		calculerTempsAttente();
 	}
 
@@ -55,8 +52,8 @@ public class Attraction implements Serializable {
 	public String toString() {
 		return nom+": {"+
 				"\n tempsAttente=" + tempsAttente +
-				"\n tempsEntreChaqueAttraction=" + tempsEntreChaqueAttrac + 
 				"\n nbPlaces=" + nbPlaces +
+				"\n tempsEntreChaqueAttrac" + tempsEntreChaqueAttrac +
 				"\n longueurFile=" + longueurFile +
 				"\n}";
 	}
