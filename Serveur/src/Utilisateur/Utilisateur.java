@@ -33,7 +33,7 @@ public abstract class Utilisateur {
 	 */
 	public void modifierNomListe(String ancienNom, String nouveauNom){
 		try {
-			this.mesListesDeAttractions.get(indexOfAttraction(getListeParNom(ancienNom))).setNom(nouveauNom);
+			this.mesListesDeAttractions.get(indexOfListeAttractions(getListeParNom(ancienNom))).setNom(nouveauNom);
 		}catch (Exception e){
 			System.out.println("Erreur: Nom de liste non trouvé");
 		}
@@ -57,7 +57,7 @@ public abstract class Utilisateur {
 	 * @param a attraction à ajouter à la liste
 	 */
 	public void ajouterAttractionListe(String nomListe, Attraction a){
-		mesListesDeAttractions.get(indexOfAttraction(getListeParNom(nomListe))).ajoutAttraction(a);
+		mesListesDeAttractions.get(indexOfListeAttractions(getListeParNom(nomListe))).ajoutAttraction(a);
 	}
 
 	/**
@@ -94,7 +94,7 @@ public abstract class Utilisateur {
 	 * @param a Liste d'attractions
 	 * @return index int dans la liste, -1 sinon
 	 */
-	public int indexOfAttraction(ListeAttractions a){
+	public int indexOfListeAttractions(ListeAttractions a){
 		int res;
 		try{
 			res=mesListesDeAttractions.indexOf(a);
@@ -102,5 +102,12 @@ public abstract class Utilisateur {
 			res=-1;
 		}
 		return res;
+	}
+
+	/*
+	* GETTERS ET SETTERS
+	*/
+	public List<ListeAttractions> getMesListesDeAttractions(){
+		return mesListesDeAttractions;
 	}
 }

@@ -37,7 +37,7 @@ public class ServiceAdminVisiteur implements ServiceServeurAdmin, ServiceServeur
             PreparedStatement ps = connection.prepareStatement(query);
 
             ps.setString(1,attraction.getNom());
-            ps.setInt(2,attraction.getNbPlaces());
+            ps.setInt(2,attraction.getNbPlacesWagon());
             ps.setInt(3,attraction.getLongueurFile());
          //   ps.setDate(4,null);
             ps.setString(4,attraction.getNom());
@@ -91,7 +91,7 @@ public class ServiceAdminVisiteur implements ServiceServeurAdmin, ServiceServeur
                 String query = "insert into attraction values(?,?,?,0,0,0,false,null,null,null)";
                 PreparedStatement preparedStatement = conn.prepareStatement(query);
                 preparedStatement.setString(1,attraction.getNom());
-                preparedStatement.setInt(2,attraction.getNbPlaces());
+                preparedStatement.setInt(2,attraction.getNbPlacesWagon());
                 preparedStatement.setString(3,"coordonnees");
                 preparedStatement.executeUpdate();
                 return true;

@@ -45,7 +45,11 @@ public class ListeAttractions {
      * @param a attraction à supprimer
      */
     public void supprimerAttraction(Attraction a){
-        this.lAttractions.remove(a);
+        try {
+            this.lAttractions.remove(a);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     /*
