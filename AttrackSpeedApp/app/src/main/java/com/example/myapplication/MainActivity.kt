@@ -1,19 +1,14 @@
 package com.example.myapplication
 
-import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
-import android.view.View
-import android.view.ViewGroup
-import android.view.Window
 import android.widget.*
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.myapplication.databinding.ActivityMainBinding
-import com.example.myapplication.App
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,8 +20,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
 
         /**Instanciation d'une classe java en Kotlin*/
-        val Connexion = App()
-        Connexion.ConnexionToBase()
+        val Utiisateur = App()
+        Utiisateur.ConnexionToBase()
         /***/
 
         setContentView(binding.root)

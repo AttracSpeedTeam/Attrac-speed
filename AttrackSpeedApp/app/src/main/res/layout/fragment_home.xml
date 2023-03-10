@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment"
     android:id="@+id/linear_layout"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/background2">
 
     <TextView
         android:id="@+id/view2"
@@ -13,24 +14,26 @@
         android:layout_height="wrap_content"
         android:text="@string/bienvenue"
         android:textColor="@color/white"
-        android:textSize="35sp"
-        android:layout_marginTop="60dp"
+        android:textSize="20sp"
+        android:layout_marginTop="80dp"
         android:gravity="center"
-        android:background="@color/bluestyle"/>
+        android:background="@color/bluestyle"
+        />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/presentation"
-        android:textSize="32sp"
+        android:textSize="20sp"
         android:textColor="@color/black"
-        android:layout_marginTop="50dp"/>
+        android:layout_marginTop="50dp"
+        android:background="@color/Lightgray"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/description"
-        android:textSize="15sp"
+        android:textSize="20sp"
         android:textColor="@color/black"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
@@ -42,9 +45,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/titleparc"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textColor="@color/black"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:background="@color/Lightgray"/>
 
     <Spinner
         android:id="@+id/spinner"
@@ -53,15 +57,15 @@
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:minHeight="48dp"
+        android:minHeight="40dp"
         android:textColor="@color/white"
         android:entries="@array/planets_array"
         />
 
     <Button
-        android:layout_width="200dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="150dp"
         android:background="@drawable/custombutton"
         android:text="@string/info"
         android:textColor="@color/white"
