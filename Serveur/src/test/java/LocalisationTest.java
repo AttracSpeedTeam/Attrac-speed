@@ -1,5 +1,3 @@
-package Tests;
-
 import Attraction.Attraction;
 import Localisation.Carte;
 import Localisation.Position;
