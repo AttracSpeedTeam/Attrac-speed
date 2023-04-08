@@ -1,5 +1,6 @@
 package Utilisateur;
 
+import Attraction.Attraction;
 import Serveur.ServiceServeurVisiteur;
 
 import java.rmi.NotBoundException;
@@ -43,7 +44,11 @@ public class Visiteur extends Utilisateur {
 		try {
 			Registry reg = LocateRegistry.getRegistry(ip, port);
 			ServiceServeurVisiteur sa = (ServiceServeurVisiteur) reg.lookup("ServiceUser");
-			System.out.printf("Liste d'attractions : " + sa.getListeAttrac());
+			System.out.printf("Liste d'attractions : ");
+			ArrayList<Attraction> attractions = sa.getListeAttrac();
+			for (Attraction a : attractions){
+				System.out.println(a);
+			}
 		} catch (RemoteException e) {
 			System.out.println("Erreur pour acceder au serveur");
 		} catch (NotBoundException e) {

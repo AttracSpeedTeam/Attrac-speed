@@ -70,7 +70,11 @@ public class Administrateur extends Utilisateur {
 		try {
 			Registry reg = LocateRegistry.getRegistry(ip, port);
 			ServiceServeurVisiteur sa = (ServiceServeurVisiteur) reg.lookup("ServiceAdmin");
-			System.out.println("Liste d'attraction : " + sa.getListeAttrac());
+			System.out.println("Liste d'attraction : ");
+			ArrayList<Attraction> attractions = sa.getListeAttrac();
+			for (Attraction a : attractions){
+				System.out.println(a);
+			}
 		} catch (RemoteException e) {
 			System.out.println("Erreur pour acceder au serveur");
 		} catch (NotBoundException e) {

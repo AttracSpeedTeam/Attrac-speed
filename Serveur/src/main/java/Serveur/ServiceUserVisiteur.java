@@ -4,6 +4,7 @@ import Attraction.Attraction;
 
 import java.rmi.RemoteException;
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  * classe de service de connection à la BDD d'un visiteur
@@ -16,8 +17,8 @@ public class ServiceUserVisiteur implements ServiceServeurVisiteur {
      * @throws RemoteException
      */
     @Override
-    public String getListeAttrac() throws RemoteException {
-        String res = "";
+    public ArrayList<Attraction> getListeAttrac() throws RemoteException {
+        ArrayList<Attraction> res = new ArrayList<>();
         try {
             //jdbc:mysql://localhost:3306/attracspeed?serverTimezone=UTC
             //jdbc:mysql:///attracspeed
@@ -26,8 +27,11 @@ public class ServiceUserVisiteur implements ServiceServeurVisiteur {
             String query = "Select * from Attraction";
             ResultSet rs = st.executeQuery(query);
             while(rs.next()){
-                res += rs.getString(1) + ", ";
+                Attraction a = new Attraction(rs.getString(1),rs.getInt(10),rs.getInt(2),rs.getInt(11),rs.getInt(4),rs.getBoolean(7));
+                res.add(a);
             }
+
+
             connection.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);

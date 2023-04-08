@@ -4,6 +4,7 @@ import Attraction.Attraction;
 
 import java.rmi.RemoteException;
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  * classe de service de connection à la BDD d'un utilisateur
@@ -110,15 +111,16 @@ public class ServiceAdminVisiteur implements ServiceServeurAdmin, ServiceServeur
      * @throws RemoteException
      */
     @Override
-    public String getListeAttrac() throws RemoteException {
-        String res = "";
+    public ArrayList<Attraction> getListeAttrac() throws RemoteException {
+        ArrayList<Attraction> res = new ArrayList<>();
         try {
             Connection connection = this.connectBDD();
             Statement st = connection.createStatement();
             String query = "Select * from Attraction";
             ResultSet rs = st.executeQuery(query);
             while(rs.next()){
-                res += rs.getString(1) + ", ";
+                Attraction a = new Attraction(rs.getString(1),rs.getInt(10),rs.getInt(2),rs.getInt(11),rs.getInt(6),rs.getBoolean(7));
+                res.add(a);
             }
             connection.close();
         } catch (SQLException e) {

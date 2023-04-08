@@ -2,6 +2,8 @@ package Serveur;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+
 import Attraction.Attraction;
 
 /**
@@ -9,5 +11,5 @@ import Attraction.Attraction;
  */
 public interface ServiceServeurVisiteur extends Remote {
 
-    String getListeAttrac() throws RemoteException;
+    ArrayList<Attraction> getListeAttrac() throws RemoteException;
 }

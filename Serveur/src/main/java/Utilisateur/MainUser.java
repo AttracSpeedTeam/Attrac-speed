@@ -14,6 +14,9 @@ public class MainUser {
         Attraction attraction2 = new Attraction("Bus magique sans rail",89,20);
         admin.ajouterAttractionBDD(attraction2);
 
+        admin.afficherListeAttraction();
+
+
         Visiteur v = new Visiteur();
         v.afficherListeAttraction();
 
