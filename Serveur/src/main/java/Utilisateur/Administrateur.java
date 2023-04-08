@@ -8,6 +8,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
 
+import Serveur.ServiceAdminVisiteur;
 import Serveur.ServiceServeurAdmin;
 import Serveur.ServiceServeurVisiteur;
 
@@ -65,7 +66,6 @@ public class Administrateur extends Utilisateur {
 	/**
 	 * affiche en ligne de commande les attractions de la BDD
 	 */
-	@Override
 	public void afficherListeAttraction() {
 		try {
 			Registry reg = LocateRegistry.getRegistry(ip, port);
@@ -80,6 +80,22 @@ public class Administrateur extends Utilisateur {
 		} catch (NotBoundException e) {
 			System.out.println("Erreur pour acceder à l'élément dans le répertoire");
 		}
+	}
+
+	/**
+	 * récupère la liste des attractions de la BDD
+	 */
+	public ArrayList<Attraction> recupererListeAttraction() throws RemoteException {
+		ServiceServeurAdmin sa = null;
+		try {
+			Registry reg = LocateRegistry.getRegistry(ip, port);
+			sa = (ServiceServeurAdmin) reg.lookup("ServiceAdmin");
+		} catch (RemoteException e) {
+			System.out.println("Erreur pour acceder au serveur");
+		} catch (NotBoundException e) {
+			System.out.println("Erreur pour acceder à l'élément dans le répertoire");
+		}
+		return sa.getListeAttrac();
 	}
 
 	/**
