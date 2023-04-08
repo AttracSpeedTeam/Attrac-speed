@@ -16,6 +16,8 @@ public class Attraction implements Serializable {
 	private int tempsEntreChaqueWagon;
 	/**longueur en mètres de la file d'attendre*/
 	private int longueurFile;
+	/** booléen pour savoir si l'attraction est ouvert ou non*/
+	private boolean is_open;
 
 	/**
 	 * constructeur par defaut d'une attraction
@@ -29,6 +31,16 @@ public class Attraction implements Serializable {
 		this.tempsEntreChaqueWagon = t;
 		this.longueurFile = 0;
 		this.tempsAttente = 0;
+		this.is_open = false;
+	}
+
+	public Attraction(String n, int p, int t, int l, int ta, boolean o){
+		this.nom = n;
+		this.nbPlacesWagon = p;
+		this.tempsEntreChaqueWagon = t;
+		this.longueurFile = l;
+		this.tempsAttente = ta;
+		this.is_open = o;
 	}
 
 	/**
@@ -74,6 +86,10 @@ public class Attraction implements Serializable {
 
 	public int getLongueurFile() {
 		return longueurFile;
+	}
+
+	public String getOuverture() {
+		if(is_open) return "Oui"; else return "Non";
 	}
 
 	@Override
