@@ -88,6 +88,10 @@ public class Attraction implements Serializable {
 		return longueurFile;
 	}
 
+	public int getTempsEntreChaqueWagon(){
+		return tempsEntreChaqueWagon;
+	}
+
 	public String getAttente(){
 		return tempsAttente/60 + " min";
 	}

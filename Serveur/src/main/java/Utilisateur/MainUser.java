@@ -7,8 +7,8 @@ public class MainUser {
     public static void main (String[] args){
         //Définition des paramètre
         Administrateur admin = new Administrateur();
-        Attraction attraction = new Attraction("Petit train",19,60);
-        attraction.majLongueurFile(5);
+        Attraction attraction = new Attraction("Petit train",19,20,41,12,true);
+        attraction.majLongueurFile(45);
         admin.modifierAttraction(attraction);
 
         Attraction attraction2 = new Attraction("Bus magique sans rail",89,20);

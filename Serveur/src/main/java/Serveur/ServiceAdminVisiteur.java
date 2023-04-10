@@ -5,11 +5,97 @@ import Attraction.Attraction;
 import java.rmi.RemoteException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * classe de service de connection à la BDD d'un utilisateur
  */
 public class ServiceAdminVisiteur implements ServiceServeurAdmin, ServiceServeurVisiteur {
+
+    ArrayList<Attraction> attractions;
+
+    public ServiceAdminVisiteur(){
+        try {
+            attractions = getListeAttrac();
+
+            for(Attraction a : attractions){
+                System.out.println(a);
+            }
+
+
+
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+
+        autoUpdate();
+    }
+
+
+    class MyTimerTask extends TimerTask {
+
+        public MyTimerTask() {
+
+        }
+
+        @Override
+        public void run() {
+            updateBDD();
+        }
+    }
+
+
+    private void updateBDD() {
+        try {
+            for (Attraction attraction : attractions) {
+                modifDB(attraction);
+            }
+
+            System.out.println("Update BDD terminé");
+
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+
+    public void autoUpdate() {
+        Timer timer = new Timer();
+        timer.schedule(new MyTimerTask(), 1000, 10000);
+    }
+
+    @Override
+    public boolean modifAttraction(Attraction attraction) throws RemoteException{
+        try {
+            if(checkPresence(attraction.getNom())){
+                int i = 0;
+                boolean stop = false;
+                while(!stop && i< attractions.size()){
+                    if(attractions.get(i).getNom().equalsIgnoreCase(attraction.getNom())){
+                        stop = true;
+                    } else {
+                        i++;
+                    }
+                }
+
+                attractions.remove(i);
+                attractions.add(attraction);
+                return true;
+            } else {return false;}
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
+
+
+
 
     /**
      * modification d'une attraction dans la BDD
@@ -17,34 +103,40 @@ public class ServiceAdminVisiteur implements ServiceServeurAdmin, ServiceServeur
      * @return true si réussi
      * @throws RemoteException
      */
-    @Override
+
+
+
+
     public boolean modifDB(Attraction attraction) throws RemoteException {
         try {
             if(checkPresence(attraction.getNom())){
                 Connection connection =  this.connectBDD();
 
                 String query =  "update attraction" +
-                            " set nom_attraction = ? ," +
-                            " Nb_place_par_tour = ? ," +
-                           // " Emplacement = ?" +
-                           // " TailleFileAttenteNormal = ?" +
-                           // " TailleFileAttenteFast = ?" +
-                            " TailleFileAttenteTotal = ?" +
-                           // " Disponible = ?" +
-                           // " Horaire_Deb = ?" +
-                           // " Horaire_Fin = ?" +
-                           // " TempsAttenteActuel ?" +
-                            " where nom_attraction = ?";
-            PreparedStatement ps = connection.prepareStatement(query);
+                        " set nom_attraction = ? ," +
+                        " Nb_place_par_tour = ? ," +
+                        // " Emplacement = ?" +
+                        // " TailleFileAttenteNormal = ?" +
+                        // " TailleFileAttenteFast = ?" +
+                        " TailleFileAttenteTotal = ? ," +
+                        // " Disponible = ?" +
+                        // " Horaire_Deb = ?" +
+                        // " Horaire_Fin = ?" +
+                        " TempsAttenteActuel = ? ," +
+                        " duree_Tour = ?" +
+                        " where nom_attraction = ?";
+                PreparedStatement ps = connection.prepareStatement(query);
 
-            ps.setString(1,attraction.getNom());
-            ps.setInt(2,attraction.getNbPlacesWagon());
-            ps.setInt(3,attraction.getLongueurFile());
-         //   ps.setDate(4,null);
-            ps.setString(4,attraction.getNom());
-            ps.executeUpdate();
+                ps.setString(1,attraction.getNom());
+                ps.setInt(2,attraction.getNbPlacesWagon());
+                ps.setInt(3,attraction.getLongueurFile());
+                ps.setInt(4,attraction.getTempsAttente());
+                ps.setInt(5,attraction.getTempsEntreChaqueWagon());
+                ps.setString(6,attraction.getNom());
+                ps.executeUpdate();
 
-            connection.close();
+
+                connection.close();
                 return true;
             } else {return false;}
         } catch (SQLException | ClassNotFoundException e) {
@@ -52,6 +144,7 @@ public class ServiceAdminVisiteur implements ServiceServeurAdmin, ServiceServeur
         }
 
     }
+
 
     /**
      * suppression d'une attraction dans la BDD
@@ -119,7 +212,7 @@ public class ServiceAdminVisiteur implements ServiceServeurAdmin, ServiceServeur
             String query = "Select * from Attraction";
             ResultSet rs = st.executeQuery(query);
             while(rs.next()){
-                Attraction a = new Attraction(rs.getString(1),rs.getInt(10),rs.getInt(2),rs.getInt(11),rs.getInt(6),rs.getBoolean(7));
+                Attraction a = new Attraction(rs.getString(1),rs.getInt(2),rs.getInt(11),rs.getInt(6),rs.getInt(10),rs.getBoolean(7));
                 res.add(a);
             }
             connection.close();
