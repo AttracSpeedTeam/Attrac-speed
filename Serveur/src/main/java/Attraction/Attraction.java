@@ -88,6 +88,22 @@ public class Attraction implements Serializable {
 		return longueurFile;
 	}
 
+	public String getAttente(){
+		return tempsAttente/60 + " min";
+	}
+
+	public String getPlaces() {
+		return nbPlacesWagon + " places";
+	}
+
+	public String getLongueur() {
+		return longueurFile + " personnes";
+	}
+
+	public String getCadence() {
+		return tempsEntreChaqueWagon + " sec";
+	}
+
 	public String getOuverture() {
 		if(is_open) return "Oui"; else return "Non";
 	}
