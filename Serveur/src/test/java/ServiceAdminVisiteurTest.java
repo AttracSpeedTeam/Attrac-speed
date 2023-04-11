@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.OrderWith;
 import org.junit.runners.MethodSorters;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ServiceAdminVisiteurTest{
@@ -25,10 +26,9 @@ public class ServiceAdminVisiteurTest{
     }
 
     @Test
-    public void testBDeleteLogin() {
-        sa.deleteLogin("Test");
-    }
+    public void testBDeleteLogin() {assertTrue(sa.deleteLogin("Test"));}
 
-
+    @Test
+    public void testCFailLogin() {assertFalse(sa.login("Oui","baguette"));}
 
 }
