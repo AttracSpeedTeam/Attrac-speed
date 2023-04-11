@@ -3,6 +3,7 @@ package Serveur;
 import Attraction.Attraction;
 
 import java.rmi.RemoteException;
+import java.security.MessageDigest;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Timer;
@@ -15,20 +16,12 @@ public class ServiceAdminVisiteur implements ServiceServeurAdmin, ServiceServeur
 
     ArrayList<Attraction> attractions;
 
-    public ServiceAdminVisiteur(){
+    public ServiceAdminVisiteur() {
         try {
             attractions = getListeAttrac();
-
-            for(Attraction a : attractions){
-                System.out.println(a);
-            }
-
-
-
         } catch (RemoteException e) {
             throw new RuntimeException(e);
         }
-
         autoUpdate();
     }
 
@@ -67,13 +60,13 @@ public class ServiceAdminVisiteur implements ServiceServeurAdmin, ServiceServeur
     }
 
     @Override
-    public boolean modifAttraction(Attraction attraction) throws RemoteException{
+    public boolean modifAttraction(Attraction attraction) throws RemoteException {
         try {
-            if(checkPresence(attraction.getNom())){
+            if (checkPresence(attraction.getNom())) {
                 int i = 0;
                 boolean stop = false;
-                while(!stop && i< attractions.size()){
-                    if(attractions.get(i).getNom().equalsIgnoreCase(attraction.getNom())){
+                while (!stop && i < attractions.size()) {
+                    if (attractions.get(i).getNom().equalsIgnoreCase(attraction.getNom())) {
                         stop = true;
                     } else {
                         i++;
@@ -83,7 +76,9 @@ public class ServiceAdminVisiteur implements ServiceServeurAdmin, ServiceServeur
                 attractions.remove(i);
                 attractions.add(attraction);
                 return true;
-            } else {return false;}
+            } else {
+                return false;
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
@@ -92,27 +87,21 @@ public class ServiceAdminVisiteur implements ServiceServeurAdmin, ServiceServeur
     }
 
 
-
-
-
-
-
     /**
      * modification d'une attraction dans la BDD
+     *
      * @param attraction attraction modifiée (nom identique pour la reconnaitre)
      * @return true si réussi
      * @throws RemoteException
      */
 
 
-
-
     public boolean modifDB(Attraction attraction) throws RemoteException {
         try {
-            if(checkPresence(attraction.getNom())){
-                Connection connection =  this.connectBDD();
+            if (checkPresence(attraction.getNom())) {
+                Connection connection = this.connectBDD();
 
-                String query =  "update attraction" +
+                String query = "update attraction" +
                         " set nom_attraction = ? ," +
                         " Nb_place_par_tour = ? ," +
                         // " Emplacement = ?" +
@@ -127,18 +116,20 @@ public class ServiceAdminVisiteur implements ServiceServeurAdmin, ServiceServeur
                         " where nom_attraction = ?";
                 PreparedStatement ps = connection.prepareStatement(query);
 
-                ps.setString(1,attraction.getNom());
-                ps.setInt(2,attraction.getNbPlacesWagon());
-                ps.setInt(3,attraction.getLongueurFile());
-                ps.setInt(4,attraction.getTempsAttente());
-                ps.setInt(5,attraction.getTempsEntreChaqueWagon());
-                ps.setString(6,attraction.getNom());
+                ps.setString(1, attraction.getNom());
+                ps.setInt(2, attraction.getNbPlacesWagon());
+                ps.setInt(3, attraction.getLongueurFile());
+                ps.setInt(4, attraction.getTempsAttente());
+                ps.setInt(5, attraction.getTempsEntreChaqueWagon());
+                ps.setString(6, attraction.getNom());
                 ps.executeUpdate();
 
 
                 connection.close();
                 return true;
-            } else {return false;}
+            } else {
+                return false;
+            }
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -148,18 +139,19 @@ public class ServiceAdminVisiteur implements ServiceServeurAdmin, ServiceServeur
 
     /**
      * suppression d'une attraction dans la BDD
+     *
      * @param name nom de l'attraction à supprimer
      * @return true si réussi
      * @throws RemoteException
      */
     @Override
     public boolean retirerAttractionBDD(String name) throws RemoteException {
-        try{
-            if(checkPresence(name)){
+        try {
+            if (checkPresence(name)) {
                 Connection conn = connectBDD();
                 String query = "delete from attraction where nom_attraction = ?";
                 PreparedStatement preparedStatement = conn.prepareStatement(query);
-                preparedStatement.setString(1,name);
+                preparedStatement.setString(1, name);
                 preparedStatement.executeUpdate();
                 return true;
             }
@@ -173,20 +165,21 @@ public class ServiceAdminVisiteur implements ServiceServeurAdmin, ServiceServeur
 
     /**
      * ajout d'une attraction dans la BDD
+     *
      * @param attraction attraction à insérer
      * @return true si réussi
      * @throws RemoteException
      */
     @Override
     public boolean ajoutAttractionBDD(Attraction attraction) throws RemoteException {
-        try{
-            if(!checkPresence(attraction.getNom())){
+        try {
+            if (!checkPresence(attraction.getNom())) {
                 Connection conn = connectBDD();
                 String query = "insert into attraction values(?,?,?,0,0,0,false,null,null,null)";
                 PreparedStatement preparedStatement = conn.prepareStatement(query);
-                preparedStatement.setString(1,attraction.getNom());
-                preparedStatement.setInt(2,attraction.getNbPlacesWagon());
-                preparedStatement.setString(3,"coordonnees");
+                preparedStatement.setString(1, attraction.getNom());
+                preparedStatement.setInt(2, attraction.getNbPlacesWagon());
+                preparedStatement.setString(3, "coordonnees");
                 preparedStatement.executeUpdate();
                 return true;
             }
@@ -200,6 +193,7 @@ public class ServiceAdminVisiteur implements ServiceServeurAdmin, ServiceServeur
 
     /**
      * retourne la liste des attractions sous forme de chaine de caractères
+     *
      * @return liste d'attractions String
      * @throws RemoteException
      */
@@ -211,8 +205,8 @@ public class ServiceAdminVisiteur implements ServiceServeurAdmin, ServiceServeur
             Statement st = connection.createStatement();
             String query = "Select * from Attraction";
             ResultSet rs = st.executeQuery(query);
-            while(rs.next()){
-                Attraction a = new Attraction(rs.getString(1),rs.getInt(2),rs.getInt(11),rs.getInt(6),rs.getInt(10),rs.getBoolean(7));
+            while (rs.next()) {
+                Attraction a = new Attraction(rs.getString(1), rs.getInt(2), rs.getInt(11), rs.getInt(6), rs.getInt(10), rs.getBoolean(7));
                 res.add(a);
             }
             connection.close();
@@ -225,6 +219,7 @@ public class ServiceAdminVisiteur implements ServiceServeurAdmin, ServiceServeur
 
     /**
      * permet de verifier l'existence d'une attraction dans la BDD
+     *
      * @param name nom de l'attraction à verifier
      * @return true si l'attraction existe
      * @throws SQLException
@@ -232,12 +227,12 @@ public class ServiceAdminVisiteur implements ServiceServeurAdmin, ServiceServeur
      */
     public boolean checkPresence(String name) throws SQLException, ClassNotFoundException {
         Connection connection = this.connectBDD();
-        String query =" Select count(*) from Attraction where nom_attraction = ?";
+        String query = " Select count(*) from Attraction where nom_attraction = ?";
         PreparedStatement ps = connection.prepareStatement(query);
-        ps.setString(1,name);
+        ps.setString(1, name);
         ResultSet rs = ps.executeQuery();
         rs.next();
-        if(rs.getInt(1) > 0){
+        if (rs.getInt(1) > 0) {
             connection.close();
             return true;
         } else {
@@ -248,11 +243,72 @@ public class ServiceAdminVisiteur implements ServiceServeurAdmin, ServiceServeur
 
     /**
      * permet de récupérer la connexion à la BDD
+     *
      * @return connection à la BDD
      * @throws SQLException
      */
     private Connection connectBDD() throws SQLException {
-        //RETIRER LE MDP DE LA LIGNE DE CMD    Admin1234!
-       return DriverManager.getConnection("jdbc:mysql://localhost:3306/attracspeed?serverTimezone=UTC","root","");
+        return DriverManager.getConnection("jdbc:mysql://localhost:3306/attracspeed?serverTimezone=UTC", "root", "");
+    }
+
+
+    private String sha256(final String base) {
+        try {
+            final MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            final byte[] hash = digest.digest(base.getBytes("UTF-8"));
+            final StringBuilder hexString = new StringBuilder();
+            for (int i = 0; i < hash.length; i++) {
+                final String hex = Integer.toHexString(0xff & hash[i]);
+                if (hex.length() == 1)
+                    hexString.append('0');
+                hexString.append(hex);
+            }
+            return hexString.toString();
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+
+    public boolean addLogin(String user, String mdp) {
+        try {
+            Connection conn = connectBDD();
+
+            String query = "insert into admins values(?,?)";
+            PreparedStatement preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setString(1, user);
+            preparedStatement.setString(2, sha256(mdp));
+            preparedStatement.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("ERREUR");
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean login(String user, String mdp) {
+        try {
+            String name = "";
+            Connection conn = this.connectBDD();
+            String query = "Select mdp from Admins where name = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setString(1, user);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()){
+                name = rs.getString(1);
+            }
+            rs.close();
+            conn.close();
+            if (name.equals(sha256(mdp))) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 }
