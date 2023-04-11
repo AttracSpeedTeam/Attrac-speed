@@ -311,4 +311,21 @@ public class ServiceAdminVisiteur implements ServiceServeurAdmin, ServiceServeur
 
 
     }
+
+    public boolean deleteLogin(String name){
+        try {
+
+            Connection conn = connectBDD();
+        String query = "delete from admins where name = ?";
+        PreparedStatement preparedStatement = conn.prepareStatement(query);
+        preparedStatement.setString(1, name);
+        preparedStatement.executeUpdate();
+        return true;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+
 }
