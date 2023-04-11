@@ -97,6 +97,58 @@ class DashboardFragment : Fragment() {
         markerDisney.snippet = "Parc d'attraction"
         map.overlays.add(markerDisney)
 
+        val marker2 = Marker(map)
+        marker2.position = GeoPoint(48.87350796980345, 2.773361923733266)
+        marker2.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+        marker2.title = "Pirates of the Caribbean"
+        marker2.snippet = "attraction"
+        map.overlays.add(marker2)
+
+        val marker3 = Marker(map)
+        marker3.position = GeoPoint(48.874640198713415, 2.7787671408728443)
+        marker3.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+        marker3.title = "Stars Tours"
+        marker3.snippet = "attraction"
+        map.overlays.add(marker3)
+
+        val marker4 = Marker(map)
+        marker4.position = GeoPoint(48.87055478922558, 2.7768818822670074)
+        marker4.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+        marker4.title = "Phantom Manor"
+        marker4.snippet = "attraction"
+        map.overlays.add(marker4)
+
+        val marker5 = Marker(map)
+        marker5.position = GeoPoint(48.87148658141752, 2.7745565811849127)
+        marker5.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+        marker5.title = "Big Thunder Mountain"
+        marker5.snippet = "attraction"
+        map.overlays.add(marker5)
+
+        val marker6 = Marker(map)
+        marker6.position = GeoPoint(48.87385325706409, 2.774057660524966)
+        marker6.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+        marker6.title = "Peter Pan's Flight"
+        marker6.snippet = "attraction"
+        map.overlays.add(marker6)
+
+        val marker7 = Marker(map)
+        marker7.position = GeoPoint(48.87343665768157, 2.7779261226809795)
+        marker7.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+        marker7.title = "Buzz Lightyear Laser Blast"
+        marker7.snippet = "attraction"
+        map.overlays.add(marker7)
+
+        val marker1 = Marker(map)
+        marker1.position = GeoPoint(48.87374320146056, 2.7753337431335074)
+        marker1.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+        marker1.title = "Le Carrousel de Lancelot"
+        marker1.snippet = "attraction"
+        map.overlays.add(marker1)
+
+
+        //********************************************************//
+
         return view
     }
 
