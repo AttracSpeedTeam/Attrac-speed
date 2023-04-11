@@ -42,7 +42,7 @@ class DashboardFragment : Fragment() {
         val mapController: IMapController = map.controller
 
         // on configure le zoom de la map (mapController.zoomTo(14, 1))
-        mapController.setZoom(5)
+        mapController.setZoom(18)
 
         // on récupère notre localisation
         val mGpsMyLocationProvider = GpsMyLocationProvider(requireContext())
@@ -53,6 +53,17 @@ class DashboardFragment : Fragment() {
             map.overlays.add(mLocationOverlay)
             mapController.animateTo(mLocationOverlay.myLocation)
         }
+
+        val startPoint = GeoPoint(48.870601, 2.779272)
+
+        mapController.setCenter(startPoint)
+
+        val marker = Marker(map)
+        marker.position = startPoint
+        marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+        marker.title = "Vous êtes ici"
+        marker.icon = resources.getDrawable(R.drawable.personne)
+        map.overlays.add(marker)
 
         // Création d'un marqueur au coordonnées de l'IUT
         val markerIUT = Marker(map)
