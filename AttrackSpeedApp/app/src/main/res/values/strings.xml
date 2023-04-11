@@ -25,8 +25,8 @@
     <string name="selected_item">Selected item:</string>
 
         <string-array name="planets_array">
+            <item>Disneyland Paris</item>
             <item>Waligator Grand-Est</item>
             <item>Parque du petit prince</item>
-            <item>Aqua Mundo</item>
         </string-array>
 </resources>
