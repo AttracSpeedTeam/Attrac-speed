@@ -23,10 +23,10 @@ public class InterfaceAdmin extends JFrame {
     public InterfaceAdmin() throws RemoteException {
         super("Attrac-Speed Management");
         this.admin = new Administrateur();
-        //ArrayList<Attraction> attractions = admin.recupererListeAttraction();
-        ArrayList<Attraction> attractions = new ArrayList<Attraction>();
+        ArrayList<Attraction> attractions = admin.recupererListeAttraction();
+        /*ArrayList<Attraction> attractions = new ArrayList<Attraction>();
         attractions.add(new Attraction("Petit train",19,60));
-        attractions.add(new Attraction("Bus magique sans rail",89,20));
+        attractions.add(new Attraction("Bus magique sans rail",89,20));*/
 
 
         Object[][] data = new Object[attractions.size()][4];
