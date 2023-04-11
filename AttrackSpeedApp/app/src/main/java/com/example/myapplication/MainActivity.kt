@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import android.widget.*
@@ -9,6 +10,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.myapplication.databinding.ActivityMainBinding
+import org.osmdroid.config.Configuration
+import retrofit2.Retrofit
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,10 +22,10 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
 
-        /**Instanciation d'une classe java en Kotlin*/
-        val Utiisateur = App()
-        Utiisateur.ConnexionToBase()
-        /***/
+        // Initialiser les configurations de treet maps
+        val context = applicationContext
+        Configuration.getInstance().load(context, PreferenceManager.getDefaultSharedPreferences(context))
+        Configuration.getInstance().userAgentValue = packageName
 
         setContentView(binding.root)
         supportActionBar?.hide()
@@ -38,7 +41,6 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-
 
     }
 }

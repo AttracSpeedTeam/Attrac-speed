@@ -49,7 +49,7 @@ public class Administrateur extends Utilisateur {
 		try {
 			Registry reg = LocateRegistry.getRegistry(ip, port);
 			ServiceServeurAdmin sa = (ServiceServeurAdmin) reg.lookup("ServiceAdmin");
-			if(sa.modifDB(attraction)){
+			if(sa.modifAttraction(attraction)){
 				System.out.println("Modif réussi ");
 				return true;
 			} else{
