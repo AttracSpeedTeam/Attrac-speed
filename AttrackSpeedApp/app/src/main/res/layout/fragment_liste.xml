@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/liste"
         android:layout_gravity=""
-        android:background="@color/bluestyle"
+        android:background="@color/blue"
         app:tabTextColor="@color/white"
         >
 

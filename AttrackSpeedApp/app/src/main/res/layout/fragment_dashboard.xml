@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout  xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".ui.dashboard.DashboardFragment">
+
+<TextView
+    android:id="@+id/map_title"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Titre de la carte"
+    android:textAlignment="center"
+    android:textSize="18sp"
+    android:background="@color/transparent"
+    android:padding="16dp"
+    android:layout_marginTop="60dp"
+    android:layout_alignParentTop="true"
+    android:gravity="center_horizontal"
+    />
+
+<org.osmdroid.views.MapView
+    android:id="@+id/mapview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.dashboard.DashboardFragment"
-    android:background="@drawable/background2">
+    android:layout_below="@id/map_title" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Carte"
-        android:gravity="center"
-        android:textSize="20dp"
-        android:textColor="@color/white"
-        android:layout_marginTop="80dp"/>
-
-    <org.osmdroid.views.MapView
-        android:id="@+id/mapview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-
-
-</FrameLayout >
+</RelativeLayout>

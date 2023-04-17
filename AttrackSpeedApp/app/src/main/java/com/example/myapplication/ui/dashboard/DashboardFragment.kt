@@ -1,11 +1,13 @@
 package com.example.myapplication.ui.dashboard
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.support.v4.app.Fragment
 import android.preference.PreferenceManager
+import android.widget.TextView
 import com.example.myapplication.BuildConfig
 import com.example.myapplication.databinding.FragmentDashboardBinding
 import org.osmdroid.api.IMapController
