@@ -6,19 +6,19 @@
     <item
         android:id="@+id/Page_Accueil"
         android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/title_home" />
+        android:title="@string/title_home"
+        />
+
+    <item
+        android:id="@+id/Page_Carte"
+        android:icon="@android:drawable/ic_dialog_map"
+        android:title="@string/title_dashboard" />
 
     <item
         android:id="@+id/Page_Liste"
         android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="@string/title_liste" />
-    <item
-        android:id="@+id/Page_Carte"
-        android:icon="@android:drawable/ic_dialog_map"
-        android:title="@string/title_dashboard" />
-    <item
-        android:id="@+id/Page_Connexion"
-        android:icon="@drawable/connexion"
-        android:title="@string/compte" />
+
+
 
 </menu>

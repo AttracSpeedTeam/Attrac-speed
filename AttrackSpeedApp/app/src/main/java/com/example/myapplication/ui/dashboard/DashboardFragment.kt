@@ -58,6 +58,7 @@ class DashboardFragment : Fragment() {
 
         mapController.setCenter(startPoint)
 
+        // Création d'un marqueur au coordonnées de l'utilisateur
         val marker = Marker(map)
         marker.position = startPoint
         marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)

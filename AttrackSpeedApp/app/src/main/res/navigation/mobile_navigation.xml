@@ -18,12 +18,6 @@
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/Page_Connexion"
-        android:name="com.example.myapplication.ui.connexion.ConnexionFragment"
-        android:label="Connexion"
-        tools:layout="@layout/fragment_connexion" />
-
-    <fragment
         android:id="@+id/Page_Liste"
         android:name="com.example.myapplication.ui.liste.ListFragment"
         android:label="Liste"
