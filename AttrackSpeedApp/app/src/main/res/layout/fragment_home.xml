@@ -1,53 +1,50 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linear_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment"
-    android:id="@+id/linear_layout"
     android:orientation="vertical"
-    android:background="@drawable/background2">
+    android:background="@drawable/background_gradient">
 
     <TextView
-        android:id="@+id/view2"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="60sp"
         android:text="@string/bienvenue"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:layout_marginTop="80dp"
-        android:gravity="center"
-        />
+        android:textColor="@color/black"
+        android:textSize="40sp"
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/presentation"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:textColor="@color/black"
         android:layout_marginTop="50dp"
-        android:background="@color/Lightgray"/>
+        android:background="@drawable/rounded_rectangle"
+        android:padding="18dp"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/description"
-        android:textSize="20sp"
+        android:textSize="14sp"
         android:textColor="@color/black"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="20dp" />
-
-
+        android:layout_marginStart="20dp"
+        android:padding="8dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/titleparc"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textColor="@color/black"
         android:layout_marginTop="20dp"
-        android:background="@color/Lightgray"/>
+        android:background="@drawable/rounded_rectangle"
+        android:padding="16dp"/>
 
     <Spinner
         android:id="@+id/spinner"
@@ -57,20 +54,41 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
         android:minHeight="40dp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
+        android:entries="@array/planets_array"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Parc à proximité"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_rectangle"
+        android:padding="16dp"/>
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:minHeight="40dp"
+        android:textColor="@color/black"
         android:entries="@array/planets_array"
         />
 
     <Button
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/custombutton"
         android:text="@string/info"
         android:textColor="@color/white"
-        android:textSize="15sp"
-        android:layout_marginLeft="10dp"/>
-
+        android:textSize="18sp"
+        android:layout_marginLeft="10dp"
+        android:padding="16dp"/>
 
 </LinearLayout>
-

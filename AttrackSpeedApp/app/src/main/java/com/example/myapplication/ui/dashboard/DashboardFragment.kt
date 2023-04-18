@@ -12,6 +12,10 @@ import com.example.myapplication.BuildConfig
 import com.example.myapplication.databinding.FragmentDashboardBinding
 import org.osmdroid.api.IMapController
 import com.example.myapplication.R
+import com.graphhopper.GHRequest
+import com.graphhopper.GraphHopper
+import com.graphhopper.routing.util.CarFlagEncoder
+import com.graphhopper.routing.util.EncodingManager
 import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
@@ -19,6 +23,7 @@ import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
+import org.slf4j.MDC.remove
 
 class DashboardFragment : Fragment() {
 
@@ -149,9 +154,7 @@ class DashboardFragment : Fragment() {
         marker1.snippet = "attraction"
         map.overlays.add(marker1)
 
-
         //********************************************************//
-
         return view
     }
 
