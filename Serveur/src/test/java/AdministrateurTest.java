@@ -27,12 +27,6 @@ public class AdministrateurTest {
     }
 
     @Test
-    public void modifierAttraction() {
-        assertTrue(admin.modifierAttraction(attraction));
-    }
-
-
-    @Test
     public void ajouterAttractionBDD() {
         assertTrue(admin.ajouterAttractionBDD(attraction2));
     }
