@@ -61,7 +61,8 @@ public class ApiClient {
 
         assert response.body() != null;
         String responseBody = response.body().string();
-        return Arrays.asList(responseBody.split("\\n"));
+        responseBody=responseBody.substring(2,responseBody.length()-2);
+        return Arrays.asList(responseBody.split("\",\""));
     }
 
 

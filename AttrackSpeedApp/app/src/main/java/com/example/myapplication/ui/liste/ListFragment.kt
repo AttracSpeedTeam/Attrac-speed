@@ -7,7 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.support.v4.app.Fragment
 import android.arch.lifecycle.ViewModelProvider
+import android.support.design.widget.TabItem
+import com.example.myapplication.R
+import com.example.myapplication.code.ApiClient
 import com.example.myapplication.databinding.FragmentListeBinding
+import org.osmdroid.views.MapView
 
 class ListFragment : Fragment() {
 
@@ -30,6 +34,13 @@ class ListFragment : Fragment() {
 
         _binding = FragmentListeBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        //recup de la list d'attractions
+        val lAttractions= ApiClient.RecupererListeAttraction()
+
+        val viewListe = view?.findViewById<TabItem>(R.id.listeAttraction)
+
+
 
         return root
     }

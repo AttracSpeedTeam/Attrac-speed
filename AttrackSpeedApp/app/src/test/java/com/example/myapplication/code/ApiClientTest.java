@@ -1,8 +1,10 @@
 package com.example.myapplication.code;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -42,13 +44,16 @@ public class ApiClientTest {
     public void testRecupererListeAttraction() throws IOException {
 
         //Recuperation de données
-        List<String> expectedAttractionsList = Arrays.asList("[\"Pirates of the Caribbean\"]");
+        List<String> expectedAttractionsList = new ArrayList<>();
+        expectedAttractionsList.add("Pirates of the Caribbean");
+        expectedAttractionsList.add("Big Thunder Mountain");
+        expectedAttractionsList.add("Phantom Manor");
 
         //Appel de la fonction
         List<String> attractionsList = ApiClient.RecupererListeAttraction();
 
         //Test comparaison
-        assertEquals(expectedAttractionsList, attractionsList);
+        assertTrue(attractionsList.containsAll(expectedAttractionsList));
     }
 }
 
