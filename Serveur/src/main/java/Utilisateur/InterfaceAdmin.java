@@ -17,7 +17,7 @@ public class InterfaceAdmin extends JFrame {
     private JTable table;
     private JButton ajouter, modifier, supprimer;
     private JPanel boutons, main, info, bas;
-    private JLabel attracNom, attracAttente, attracPlaces, attracTemps, attracLongueur, attracOuvert;
+    private JTextField attracNom, attracAttente, attracPlaces, attracTemps, attracLongueur, attracOuvert;
     private final Administrateur admin;
 
     public InterfaceAdmin() throws RemoteException {
@@ -45,53 +45,58 @@ public class InterfaceAdmin extends JFrame {
         ajouter = new JButton("Ajouter");
         ajouter.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //admin.ajouterAttractionBDD(Attraction);
+                Attraction attr = getSelected();
+                admin.ajouterAttractionBDD(attr);
             }
         });
 
         modifier = new JButton("Modifier");
         modifier.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //admin.modifierAttraction(Attraction);
+                Attraction attr = getSelected();
+                admin.modifierAttraction(attr);
             }
         });
 
         supprimer = new JButton("Supprimer");
         supprimer.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //admin.retirerAttraction(nom);
+                admin.retirerAttraction(attracNom.getText());
             }
         });
 
         boutons = new JPanel(new GridLayout(10,1));
         boutons.add(new JPanel());
+        boutons.add(new JPanel());
         boutons.add(ajouter);
+        boutons.add(new JPanel());
         boutons.add(modifier);
+        boutons.add(new JPanel());
         boutons.add(supprimer);
 
         info = new JPanel(new GridLayout(6, 2));
 
-        attracNom = new JLabel();
+        attracNom = new JTextField();
         info.add(new JLabel("Nom :"));
         info.add(attracNom);
 
-        attracAttente = new JLabel();
+        attracAttente = new JTextField();
         info.add(new JLabel("Attente :"));
         info.add(attracAttente);
 
-        attracPlaces = new JLabel();
+        attracPlaces = new JTextField();
         info.add(new JLabel("Places :"));
         info.add(attracPlaces);
 
-        attracTemps = new JLabel();
+        attracTemps = new JTextField();
         info.add(new JLabel("Cadence :"));
         info.add(attracTemps);
 
-        attracLongueur = new JLabel();
+        attracLongueur = new JTextField();
         info.add(new JLabel("File :"));
         info.add(attracLongueur);
 
-        attracOuvert = new JLabel();
+        attracOuvert = new JTextField();
         info.add(new JLabel("Ouvert :"));
         info.add(attracOuvert);
 
@@ -151,6 +156,16 @@ public class InterfaceAdmin extends JFrame {
         attracLongueur.setText(a.getLongueur());
         attracTemps.setText(a.getCadence());
         attracOuvert.setText(a.getOuverture());
+    }
+
+    private Attraction getSelected(){
+        String nom = attracNom.getText();
+        int att = Integer.parseInt(attracAttente.getText().split(" ")[0]);
+        int plc = Integer.parseInt(attracPlaces.getText().split(" ")[0]);
+        int lg = Integer.parseInt(attracLongueur.getText().split(" ")[0]);
+        int tmps = Integer.parseInt(attracTemps.getText().split(" ")[0]);
+        boolean open = attracOuvert.getText().equalsIgnoreCase("Oui");
+        return new Attraction(nom,att,plc,lg,tmps,open);
     }
 
 }
