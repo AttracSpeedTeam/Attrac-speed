@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,49 +20,56 @@ public class InterfaceAdmin extends JFrame {
     private JPanel boutons, main, info, bas;
     private JTextField attracNom, attracAttente, attracPlaces, attracTemps, attracLongueur, attracOuvert;
     private final Administrateur admin;
+    private Object[][] data;
+    private ArrayList<Attraction> attractions;
+    private String[] nomCol = {"Nom", "Nb de place par tour", "Ouvert", "Temps d'attente"};
 
     public InterfaceAdmin() throws RemoteException {
         super("Attrac-Speed Management");
         this.admin = new Administrateur();
-        ArrayList<Attraction> attractions = admin.recupererListeAttraction();
+
         /*ArrayList<Attraction> attractions = new ArrayList<Attraction>();
         attractions.add(new Attraction("Petit train",19,60));
         attractions.add(new Attraction("Bus magique sans rail",89,20));*/
 
 
-        Object[][] data = new Object[attractions.size()][4];
-        int i=0;
-        for (Attraction a : attractions) {
-            data[i][0] = a.getNom();
-            data[i][1] = a.getNbPlacesWagon();
-            data[i][2] = a.getOuverture();
-            data[i][3] = a.getTempsAttente();
-            i++;
-        }
-
-        String[] nomCol = {"Nom", "Nb de place par tour", "Ouvert", "Temps d'attente"};
         table = new JTable(new DefaultTableModel(data, nomCol));
-
+        recupTable();
         ajouter = new JButton("Ajouter");
         ajouter.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Attraction attr = getSelected();
-                admin.ajouterAttractionBDD(attr);
+                try {
+                    Attraction attr = getSelected();
+                    admin.ajouterAttractionBDD(attr);
+                    recupTable();
+                } catch (RemoteException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
 
         modifier = new JButton("Modifier");
         modifier.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Attraction attr = getSelected();
-                admin.modifierAttraction(attr);
+                try {
+                    Attraction attr = getSelected();
+                    admin.modifierAttraction(attr);
+                    recupTable();
+                } catch (RemoteException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
 
         supprimer = new JButton("Supprimer");
         supprimer.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                admin.retirerAttraction(attracNom.getText());
+                try {
+                    admin.retirerAttraction(attracNom.getText());
+                    recupTable();
+                } catch (RemoteException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
 
@@ -138,6 +146,20 @@ public class InterfaceAdmin extends JFrame {
         } else {
             afficherInfo(attracs.get(i));
         }
+    }
+
+    private void recupTable() throws RemoteException {
+        attractions = admin.recupererListeAttraction();
+        data = new Object[attractions.size()][4];
+        int i=0;
+        for (Attraction a : attractions) {
+            data[i][0] = a.getNom();
+            data[i][1] = a.getNbPlacesWagon();
+            data[i][2] = a.getOuverture();
+            data[i][3] = a.getTempsAttente();
+            i++;
+        }
+        table.setModel(new DefaultTableModel(data,nomCol));
     }
 
     private void toutSupprimer() {
