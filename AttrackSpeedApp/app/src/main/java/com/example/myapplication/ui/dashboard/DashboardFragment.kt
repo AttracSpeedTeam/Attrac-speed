@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.dashboard
 
+import java.net.URL
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import com.example.myapplication.BuildConfig
 import com.example.myapplication.databinding.FragmentDashboardBinding
 import org.osmdroid.api.IMapController
 import com.example.myapplication.R
+import org.json.JSONObject
 import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
@@ -19,6 +21,10 @@ import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
+import org.osmdroid.views.overlay.Polyline
+import java.net.HttpURLConnection
+
+import java.util.ArrayList
 
 class DashboardFragment : Fragment() {
 

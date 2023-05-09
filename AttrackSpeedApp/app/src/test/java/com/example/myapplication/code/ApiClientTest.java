@@ -1,8 +1,6 @@
 package com.example.myapplication.code;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,7 +25,7 @@ public class ApiClientTest {
     }
 
     @Test
-    public void testRecupererEmplacement() throws IOException {
+    public void testRecupererEmplacement() throws IOException {3
 
         //Recuperation de données
         String nom_attraction = "Pirates of the Caribbean";
