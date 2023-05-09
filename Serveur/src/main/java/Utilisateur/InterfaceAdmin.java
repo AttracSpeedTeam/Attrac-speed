@@ -31,10 +31,10 @@ public class InterfaceAdmin extends JFrame {
         /*ArrayList<Attraction> attractions = new ArrayList<Attraction>();
         attractions.add(new Attraction("Petit train",19,60));
         attractions.add(new Attraction("Bus magique sans rail",89,20));*/
-        recupTable();
+
 
         table = new JTable(new DefaultTableModel(data, nomCol));
-
+        recupTable();
         ajouter = new JButton("Ajouter");
         ajouter.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -149,7 +149,7 @@ public class InterfaceAdmin extends JFrame {
     }
 
     private void recupTable() throws RemoteException {
-        ArrayList<Attraction> attractions = admin.recupererListeAttraction();
+        attractions = admin.recupererListeAttraction();
         data = new Object[attractions.size()][4];
         int i=0;
         for (Attraction a : attractions) {
