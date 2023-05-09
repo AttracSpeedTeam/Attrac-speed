@@ -3,7 +3,6 @@ import Serveur.ServiceAdminVisiteur;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
-import org.junit.runner.OrderWith;
 import org.junit.runners.MethodSorters;
 
 import static org.junit.Assert.assertFalse;

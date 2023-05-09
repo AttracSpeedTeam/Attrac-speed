@@ -44,7 +44,7 @@ public class ServiceAdminVisiteur implements ServiceServeurAdmin, ServiceServeur
             for (Attraction attraction : attractions) {
                 modifDB(attraction);
             }
-
+            attractions = getListeAttrac();
             System.out.println("Update BDD terminé");
 
         } catch (RemoteException e) {
@@ -56,7 +56,7 @@ public class ServiceAdminVisiteur implements ServiceServeurAdmin, ServiceServeur
 
     public void autoUpdate() {
         Timer timer = new Timer();
-        timer.schedule(new MyTimerTask(), 1000, 10000);
+        timer.schedule(new MyTimerTask(), 1000, 2000);
     }
 
     @Override
@@ -108,7 +108,7 @@ public class ServiceAdminVisiteur implements ServiceServeurAdmin, ServiceServeur
                         // " TailleFileAttenteNormal = ?" +
                         // " TailleFileAttenteFast = ?" +
                         " TailleFileAttenteTotal = ? ," +
-                        // " Disponible = ?" +
+                        " Disponible = ?," +
                         // " Horaire_Deb = ?" +
                         // " Horaire_Fin = ?" +
                         " TempsAttenteActuel = ? ," +
@@ -119,9 +119,10 @@ public class ServiceAdminVisiteur implements ServiceServeurAdmin, ServiceServeur
                 ps.setString(1, attraction.getNom());
                 ps.setInt(2, attraction.getNbPlacesWagon());
                 ps.setInt(3, attraction.getLongueurFile());
-                ps.setInt(4, attraction.getTempsAttente());
-                ps.setInt(5, attraction.getTempsEntreChaqueWagon());
-                ps.setString(6, attraction.getNom());
+                ps.setBoolean(4,attraction.getIsOpen());
+                ps.setInt(5, attraction.getTempsAttente());
+                ps.setInt(6, attraction.getTempsEntreChaqueWagon());
+                ps.setString(7, attraction.getNom());
                 ps.executeUpdate();
 
 
@@ -175,11 +176,15 @@ public class ServiceAdminVisiteur implements ServiceServeurAdmin, ServiceServeur
         try {
             if (!checkPresence(attraction.getNom())) {
                 Connection conn = connectBDD();
-                String query = "insert into attraction values(?,?,?,0,0,0,false,null,null,null)";
+                String query = "insert into attraction values(?,?,?,?,0,0,?,null,null,?,?)";
                 PreparedStatement preparedStatement = conn.prepareStatement(query);
                 preparedStatement.setString(1, attraction.getNom());
                 preparedStatement.setInt(2, attraction.getNbPlacesWagon());
-                preparedStatement.setString(3, "coordonnees");
+                preparedStatement.setString(3, "0,0");
+                preparedStatement.setInt(4, attraction.getLongueurFile());
+                preparedStatement.setBoolean(5, attraction.getIsOpen());
+                preparedStatement.setInt(6, attraction.getTempsAttente());
+                preparedStatement.setInt(7, attraction.getTempsEntreChaqueWagon());
                 preparedStatement.executeUpdate();
                 return true;
             }

@@ -92,6 +92,10 @@ public class Attraction implements Serializable {
 		return tempsEntreChaqueWagon;
 	}
 
+	public boolean getIsOpen(){
+		return is_open;
+	}
+
 	public String getAttente(){
 		return tempsAttente/60 + " min";
 	}
