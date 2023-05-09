@@ -25,7 +25,7 @@ public class ApiClientTest {
     }
 
     @Test
-    public void testRecupererEmplacement() throws IOException {3
+    public void testRecupererEmplacement() throws IOException {
 
         //Recuperation de données
         String nom_attraction = "Pirates of the Caribbean";
