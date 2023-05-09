@@ -15,38 +15,38 @@ import org.osmdroid.views.MapView
 
 class ListFragment : Fragment() {
 
-    private var _binding: FragmentListeBinding? = null
+    //private var _binding: FragmentListeBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
-    private val binding get() = _binding!!
+    //private val binding get() = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         val dashboardViewModel =
             ViewModelProvider(
                 this,
                 ViewModelProvider.NewInstanceFactory()
             ).get(ListViewModel::class.java)
 
-        _binding = FragmentListeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        //_binding = FragmentListeBinding.inflate(inflater, container, false)
+        //val root: View = binding.root
 
         //recup de la list d'attractions
-        val lAttractions= ApiClient.RecupererListeAttraction()
+        //val lAttractions= ApiClient.RecupererListeAttraction()
 
-        val viewListe = view?.findViewById<TabItem>(R.id.listeAttraction)
+        //val viewListe = view?.findViewById<TabItem>(R.id.listeAttraction)
 
+        val view = inflater.inflate(R.layout.fragment_liste, container, false)
 
-
-        return root
+        return view
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+        //_binding = null
     }
 }
